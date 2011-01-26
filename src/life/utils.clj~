@@ -1,0 +1,30 @@
+(defn n-iterate
+  "Returns a (length n) sequence of x, (f x), (f (f x)), etc"
+  [n f x]
+  (take n (iterate f x)))
+
+
+(defn coords [n f x]
+  (n-iterate n f x))
+		    
+
+(defn row-coords
+  "returns a seq of the y-coordinates of each row in an m-row matrix,
+   given an initial starting value y, and a function f, which is called iteratively on y.
+   result:  [ y , (f y) , (f (f y)) , (f (f (f y))) , etc. ] 
+
+   hint: y = *border-width*
+         f = #(+ % *button-height* *row-offset*) "
+  [m f y]
+  (coords m f y))
+
+
+(defn col-coords
+  "returns a seq of the x-coordinates of each row in an n-column matrix,
+   given an initial starting value x, and a function f, which is called iteratively on x.
+   result:  [ x , (f x) , (f (f x)) , (f (f (f x))) , ..etc. ] 
+
+   hint: x = *border-width*
+         f = #(+ % *button-width* *col-offset*)"
+  [m f x]
+  (coords m f x))
